@@ -1,0 +1,7 @@
+# 加载 ~/.config/zsh/ 目录下的所有 .zsh 文件
+for file in ~/.config/zsh/*.zsh; do
+    # 检查文件是否存在且可读
+    if [[ -r "$file" ]] && [[ -f "$file" ]]; then
+        source "$file"
+    fi
+done
