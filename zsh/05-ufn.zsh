@@ -4,9 +4,10 @@ open-file() {
 
     # 判断是否安装 fd，否则 fallback 到 find
     if command -v fd &>/dev/null; then
-        file_cmd="fd --type f ."
+        file_cmd="fd --type f --exclude .git --exclude node_modules --exclude dist ."
     else
-        file_cmd="find . -type f 2>/dev/null"
+        # file_cmd="find . -type f 2>/dev/null"
+        file_cmd="find . -type d \( -name .git -o -name node_modules -o -name dist \) -prune -o -type f -print 2>/dev/null"
     fi
 
     # 判断是否安装 bat，否则 fallback 到 cat
